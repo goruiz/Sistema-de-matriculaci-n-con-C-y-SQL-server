@@ -1,0 +1,31 @@
+﻿ @model List<matriculacion_proy.Models.TableViewModels.UsuarioTableViewModel>
+
+    @{
+        ViewBag.Title = "Usuario";
+        Layout = null;
+    }
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <center>
+        <h2>BIENVENIDO!</h2>
+
+
+        <div class="row">
+            <h2>Iniciar sesión</h2>
+            <center>
+                <button onclick="document.location.href='@Url.Content("~/Login/Index/")'" class="btn btn-success">Iniciar Sesión</button>
+
+                <h2>Registrar usuario</h2>
+
+                <button onclick="document.location.href='@Url.Content("~/Usuario/Nuevo/")'" class="btn btn-info">Registrar</button>
+            </center>
+        </div>
+    </center>
+</body>

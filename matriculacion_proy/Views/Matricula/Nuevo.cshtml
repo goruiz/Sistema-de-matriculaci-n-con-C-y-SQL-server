@@ -1,0 +1,37 @@
+﻿@model matriculacion_proy.Models.ViewModels.MatriculaViewModel
+@{
+
+
+    List<SelectListItem> listaAgencia = (List<SelectListItem>)ViewBag.agencia;
+    List<SelectListItem> listaVehiculo = (List<SelectListItem>)ViewBag.vehiculo;
+
+        }
+<center>
+    <h2>NUEVA MATRÍCULA</h2>
+</center>
+
+<div class="row">
+    <div class="col-12">
+        @using (Html.BeginForm("Nuevo", "Matricula", FormMethod.Post, new { role = "form", }))
+        {
+        @Html.AntiForgeryToken()
+        @Html.LabelFor(d => d.fechaMatricula, new { @class = "form-content" })
+        @Html.TextBoxFor(d => d.fechaMatricula, new { @class = "form-control" })
+        @Html.LabelFor(d => d.anioMatricula, new { @class = "form-content" })
+        @Html.TextBoxFor(d => d.anioMatricula, new { @class = "form-control" })
+        @Html.LabelFor(d => d.telefonoMatricula, new { @class = "form-content" })
+        @Html.TextBoxFor(d => d.telefonoMatricula, new { @class = "form-control" })
+        @Html.LabelFor(d => d.estadoMatricula, new { @class = "form-content" })
+        @Html.TextBoxFor(d => d.estadoMatricula, new { @class = "form-control" })
+        @Html.LabelFor(d => d.idVehiculo, new { @class = "form-content" })
+        @Html.DropDownList("idVehiculo", listaVehiculo, null, new { @class = "form-control" })
+        @Html.LabelFor(d => d.idAgencia, new { @class = "form-content" })
+        @Html.DropDownList("idAgencia", listaAgencia, null, new { @class = "form-control" })
+        <br />
+
+        <div style="text-align:left;">
+            <input type="submit" class="btn btn-success" value="Guardar" />
+        </div>
+        }
+    </div>
+</div>

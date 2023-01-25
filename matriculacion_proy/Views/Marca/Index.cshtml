@@ -1,0 +1,51 @@
+﻿@model List<matriculacion_proy.Models.TableViewModels.MarcaTableViewModel>
+@{
+    ViewBag.Title = "Marcas";
+}
+
+               <center>
+                   <h2>MARCAS</h2>
+               </center>
+               <center>
+                   <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Usuario/Usuarios/")' ">Alterar Usuario</button>
+               </center>
+<div class="row">
+    <div class="col-lg-5">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    ID
+                </td>
+                <td>
+                    NOMBRE
+                </td>
+                <td>
+                    PAIS
+                </td>
+            </tr>
+            @foreach (var oMarca in Model)
+            {
+                <tr>
+                    <td>
+                        @oMarca.idMarca
+                    </td>
+                    <td>
+                        @oMarca.descripcionMarca
+                    </td>
+                    <td>
+                        @oMarca.paisMarca
+                    </td>
+                    <td>
+                        <button class="btn btn-info" onclick="document.location.href = '@Url.Content("~/Marca/Editar/"+@oMarca.idMarca)' ">Editar</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" onclick="document.location.href = '@Url.Content("~/Marca/Eliminar/"+@oMarca.idMarca)' ">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </table>
+        <center>
+            <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Marca/Nuevo/")' ">Nuevo</button>
+        </center>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@model List<matriculacion_proy.Models.TableViewModels.MatriculaTableViewModel>
+@{
+    ViewBag.Title = "Matricula";
+}
+               <center>
+                   <h2>MATRICULAS</h2>
+               </center>
+               <center>
+                   <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Usuario/Usuarios/")' ">Alterar Usuario</button>
+               </center>
+                <br />
+<div class="row">
+    <div class="col-lg-5">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    ID
+                </td>
+                <td>
+                    FECHA
+                </td>
+                <td>
+                    AÑO
+                </td>
+                <td>
+                    TELEFONO
+                </td>
+                <td>
+                    ESTADO
+                </td>
+                <td>
+                    VEHICULO
+                </td>
+                <td>
+                    AGENCIA
+                </td>
+
+            </tr>
+            @foreach (var oMatricula in Model)
+            {
+            <tr>
+                <td>
+                    @oMatricula.idMatricula
+                </td>
+                <td>
+                    @oMatricula.fechaMatricula
+                </td>
+                <td>
+                    @oMatricula.anioMatricula
+                </td>
+                <td>
+                    @oMatricula.telefonoMatricula
+                </td>
+                <td>
+                    @oMatricula.estadoMatricula
+                </td>
+                <td>
+                    @oMatricula.idVehiculo
+                </td>
+                <td>
+                    @oMatricula.idAgencia
+                </td>
+                <td>
+                    <button class="btn btn-info" onclick="document.location.href = '@Url.Content("~/Matricula/Editar/"+@oMatricula.idMatricula)' ">Editar</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" onclick="document.location.href = '@Url.Content("~/Matricula/Eliminar/"+@oMatricula.idMatricula)' ">Eliminar</button>
+                </td>
+            </tr>
+            }
+        </table>
+        <center>
+            <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Matricula/Nuevo/")' ">Nuevo</button>
+        </center>
+    </div>
+</div>
+

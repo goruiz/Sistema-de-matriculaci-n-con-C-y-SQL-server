@@ -1,0 +1,51 @@
+﻿@model matriculacion_proy.Models.ViewModels.UsuarioViewModel
+
+@{
+    ViewBag.Title = "REGISTRO";
+    List<SelectListItem> listaRoles = (List<SelectListItem>)ViewBag.roles;
+    List<SelectListItem> listaEstatus = (List<SelectListItem>)ViewBag.estatus;
+    Layout = null;
+}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <center>
+        <h2>@ViewBag.Title</h2>
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                @using (Html.BeginForm("Nuevo", "Usuario", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.LabelFor(d => d.nombre)
+                    @Html.TextBoxFor(d => d.nombre, new { @class = "form-control" })
+                    @Html.LabelFor(d => d.usuario)
+                    @Html.TextBoxFor(d => d.usuario, new { @class = "form-control" })
+                    @Html.LabelFor(d => d.clave)
+                    @Html.TextBoxFor(d => d.clave, new { @class = "form-control" })
+
+
+                    <div style='text-align:center'>
+                        <input type="submit" class="btn btn-info" value="Registrarme" />
+                    </div>
+                }
+            </div>
+
+            <div class="col-lg-12">
+                <h5>Si prefieres, puedes iniciar sesión</h5>
+                <div style='text-align:center'>
+                    <button onclick="document.location.href='@Url.Content("~/Login/Index/")'" class="btn btn-success">Iniciar sesión</button>
+                </div>
+            </div>
+
+        </div>
+    </center>
+</body>

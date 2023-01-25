@@ -1,0 +1,63 @@
+﻿@model matriculacion_proy.Models.ViewModels.VehiculoViewModel
+@{
+    ViewBag.Title = "Nuevo";
+    List<SelectListItem> listaMarcas = (List<SelectListItem>)ViewBag.marca;
+    List<SelectListItem> listaColores = (List<SelectListItem>)ViewBag.color;
+}
+
+<center>
+    <h2>NUEVO VEHÍCULO</h2>
+</center>
+
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BeginForm("Nuevo", "Vehiculo", FormMethod.Post, new { role = "form" }))
+        {
+        @Html.AntiForgeryToken()
+        @Html.LabelFor(d => d.placaVehiculo )
+        <br />
+        @Html.TextBoxFor(d => d.placaVehiculo , new { @class = "form-contol" })
+        <br />
+        @Html.LabelFor(d => d.motorVehiculo )
+        <br />
+        @Html.TextBoxFor(d => d.motorVehiculo , new { @class = "form-contol" })
+        <br />
+        @Html.LabelFor(d => d.chasisVehiculo )
+        <br />
+        @Html.TextBoxFor(d => d.chasisVehiculo , new { @class = "form-contol" })
+        <br />
+        @Html.LabelFor(d => d.combustibleVehiculo )
+        <br />
+        @Html.TextBoxFor(d => d.combustibleVehiculo , new { @class = "form-contol" })
+        <br />
+        @Html.LabelFor(d => d.anioVehiculo )
+        <br />
+        @Html.TextBoxFor(d => d.anioVehiculo , new { @class = "form-contol" })
+        <br />
+        @Html.LabelFor(d => d.avaluoVehiculo )
+        <br />
+        @Html.TextBoxFor(d => d.avaluoVehiculo , new { @class = "form-contol" })
+        <br />
+        @Html.LabelFor(d => d.fotoVehiculo )
+        <br />
+        @Html.TextBoxFor(d => d.fotoVehiculo , new { @class = "form-contol" })
+        <br />
+        @Html.LabelFor(d => d.idMarca)
+        <br />
+        @Html.DropDownList("idMarca", listaMarcas, null, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(d => d.idColor )
+        <br />
+        @Html.DropDownList("idColor", listaColores, null, new { @class = "form-control" })
+        @Html.HiddenFor(d => d.idUsuario )
+
+
+        <div style="text-align:left">
+            <input type="submit" class="btn btn-success" value="Guardar" />
+        </div>
+
+        }
+    </div>
+</div>
+
+

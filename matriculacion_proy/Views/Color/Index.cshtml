@@ -1,0 +1,54 @@
+﻿@model List<matriculacion_proy.Models.TableViewModels.ColorTableViewModel>
+    @{
+    ViewBag.Title = "Color";
+    }
+
+               <center>
+                   <h2>COLORES</h2>
+               </center>
+               <center>
+                   <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Usuario/Usuarios/")' ">Alterar Usuario</button>
+               </center>
+    <div class="row">
+        <div class="col-lg-5">
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        ID
+                    </td>
+                    <td>
+                        COLOR
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                @foreach (var oColor in Model)
+            {
+                <tr>
+                    <td>
+                        @oColor.idColor
+                    </td>
+                    <td>
+                        @oColor.descripcionColor
+                    </td>
+
+                    <td>
+                        <button class="btn btn-info" onclick="document.location.href = '@Url.Content("~/Color/Editar/"+@oColor.idColor)' ">Editar</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" onclick="document.location.href = '@Url.Content("~/Color/Eliminar/"+@oColor.idColor)' ">Eliminar</button>
+                    </td>
+                </tr>
+            }
+            </table>
+            <center>
+                <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Color/Nuevo/")' ">Nuevo</button>
+            </center>
+        </div>
+    </div>
+
+
+
+

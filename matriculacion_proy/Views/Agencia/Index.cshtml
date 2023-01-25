@@ -1,0 +1,64 @@
+﻿@model List<matriculacion_proy.Models.TableViewModels.AgenciaTableViewModel>
+@{
+    ViewBag.Title = "Agencia";
+}
+<center>
+    <h2>AGENCIAS DE MATRICULACION</h2>
+</center>
+<center>
+    <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Usuario/Usuarios/")' ">Alterar Usuario</button>
+</center>
+<div class="row">
+    <div class="col-lg-5">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    ID
+                </td>
+                <td>
+                    NOMBRE AGENCIA
+                </td>
+                <td>
+                    DIRECCION AGENCIA
+                </td>
+                <td>
+                    TELEFONO AGENCIA
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            @foreach (var oAgencia in Model)
+                {
+            <tr>
+                <td>
+                    @oAgencia.idAgencia
+                </td>
+                <td>
+                    @oAgencia.descripcionAgencia
+                </td>
+                <td>
+                    @oAgencia.direccionAgencia
+                </td>
+                <td>
+                    @oAgencia.telefonoAgencia
+                </td>
+                <td>
+                    <button class="btn btn-info" onclick="document.location.href = '@Url.Content("~/Agencia/Editar/"+@oAgencia.idAgencia)' ">Editar</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger" onclick="document.location.href = '@Url.Content("~/Agencia/Eliminar/"+@oAgencia.idAgencia)' ">Eliminar</button>
+                </td>
+            </tr>
+                }
+        </table>
+        <center>
+            <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Agencia/Nuevo/")' ">Nuevo</button>
+        </center>
+
+    </div>
+</div>
+
+
+

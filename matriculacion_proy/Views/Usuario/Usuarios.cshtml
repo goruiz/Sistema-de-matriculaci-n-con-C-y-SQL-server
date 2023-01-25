@@ -1,0 +1,58 @@
+﻿@model List<matriculacion_proy.Models.TableViewModels.UsuarioTableViewModel>
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<center>
+    <h2>Usuarios</h2>
+</center>
+
+<div class="row">
+    <div class="col-lg-5">
+        <table class="table table-bordered">
+            <tr>
+                <td>
+                    Id
+                </td>
+                <td>
+                    Nombre
+                </td>
+                <td>
+                    Usuario
+                </td>
+                <td>
+                    Rol
+                </td>
+                <td>
+                    Estatus
+                </td>
+            </tr>
+            @foreach (var oMarca in Model)
+            {
+                <tr>
+                    <td>
+                        @oMarca.idUsuario
+                    </td>
+                    <td>
+                        @oMarca.nombreUsuario
+                    </td>
+                    <td>
+                        @oMarca.usuarioUsuario
+                    </td>
+                    <td>
+                        @oMarca.rolUsuario
+                    <td>
+                        @oMarca.estatusUsuario
+                    </td>
+                    
+                    <td>
+                        <button class="btn btn-info" onclick="document.location.href = '@Url.Content("~/Usuario/Editar/"+@oMarca.idUsuario)' ">Editar</button>
+                    </td>
+                </tr>
+            }
+        </table>
+        <center>
+            <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Usuario/Nuevo/")' ">Nuevo</button>
+        </center>
+    </div>
+</div>

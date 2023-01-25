@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_matriculacion_proyModelStoreContainer" CdmEntityContainer="db_matriculacion_proyEntities2">
+    <EntitySetMapping Name="tbl_agencia">
+      <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_agencia">
+        <MappingFragment StoreEntitySet="tbl_agencia">
+          <ScalarProperty Name="idAgencia" ColumnName="idAgencia" />
+          <ScalarProperty Name="descripcionAgencia" ColumnName="descripcionAgencia" />
+          <ScalarProperty Name="direccionAgencia" ColumnName="direccionAgencia" />
+          <ScalarProperty Name="telefonoAgencia" ColumnName="telefonoAgencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_color">
+      <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_color">
+        <MappingFragment StoreEntitySet="tbl_color">
+          <ScalarProperty Name="idColor" ColumnName="idColor" />
+          <ScalarProperty Name="descripcionColor" ColumnName="descripcionColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_marca">
+      <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_marca">
+        <MappingFragment StoreEntitySet="tbl_marca">
+          <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+          <ScalarProperty Name="descripcionMarca" ColumnName="descripcionMarca" />
+          <ScalarProperty Name="paisMarca" ColumnName="paisMarca" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_matricula">
+      <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_matricula">
+        <MappingFragment StoreEntitySet="tbl_matricula">
+          <ScalarProperty Name="idMatricula" ColumnName="idMatricula" />
+          <ScalarProperty Name="fechaMatricula" ColumnName="fechaMatricula" />
+          <ScalarProperty Name="anioMatricula" ColumnName="anioMatricula" />
+          <ScalarProperty Name="telefonoMatricula" ColumnName="telefonoMatricula" />
+          <ScalarProperty Name="estadoMatricula" ColumnName="estadoMatricula" />
+          <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+          <ScalarProperty Name="idAgencia" ColumnName="idAgencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_usuario">
+      <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_usuario">
+        <MappingFragment StoreEntitySet="tbl_usuario">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+          <ScalarProperty Name="usuarioUsuario" ColumnName="usuarioUsuario" />
+          <ScalarProperty Name="claveUsuario" ColumnName="claveUsuario" />
+          <ScalarProperty Name="rolUsuario" ColumnName="rolUsuario" />
+          <ScalarProperty Name="estatusUsuario" ColumnName="estatusUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_vehiculo">
+      <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_vehiculo">
+        <MappingFragment StoreEntitySet="tbl_vehiculo">
+          <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+          <ScalarProperty Name="placaVehiculo" ColumnName="placaVehiculo" />
+          <ScalarProperty Name="motorVehiculo" ColumnName="motorVehiculo" />
+          <ScalarProperty Name="chasisVehiculo" ColumnName="chasisVehiculo" />
+          <ScalarProperty Name="combustibleVehiculo" ColumnName="combustibleVehiculo" />
+          <ScalarProperty Name="anioVehiculo" ColumnName="anioVehiculo" />
+          <ScalarProperty Name="avaluoVehiculo" ColumnName="avaluoVehiculo" />
+          <ScalarProperty Name="fotoVehiculo" ColumnName="fotoVehiculo" />
+          <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+          <ScalarProperty Name="idColor" ColumnName="idColor" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

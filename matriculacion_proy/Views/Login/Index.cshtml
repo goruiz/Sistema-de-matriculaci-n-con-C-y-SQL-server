@@ -1,0 +1,54 @@
+﻿@model matriculacion_proy.Models.ViewModels.LoginViewModel
+@{
+    Layout = null;
+}
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+
+    <center>
+        <h2><b>SISTEMA DE MATRICULACIÓN VEHICULAR</b></h2>
+        <img src="~/Content/logo.png" />
+        <h2>Inicio de sesión</h2>
+        <h2>@ViewBag.Title</h2>
+        <div class="row">
+            <div class="col-lg-12">
+                @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { role = "form" }))
+                {
+                @Html.AntiForgeryToken()
+                @Html.LabelFor(d => d.usuario)
+                @Html.TextBoxFor(d => d.usuario, new { @class = "form-control" })
+                @Html.AntiForgeryToken()
+                @Html.LabelFor(d => d.clave)
+                @Html.TextBoxFor(d => d.clave, new { @class = "form-control" })
+                <div style='text-align:left'>
+                    <p></p>
+                    <center>
+                        <input type="submit" class="btn btn-success" value="Iniciar sesión" />
+                    </center>
+                    <p></p>
+                    <p></p>
+                </div>
+                }
+            </div>
+
+            <div class="col-lg-12">
+                <h5>¿Aún no tienes una cuenta? Regístrate</h5>
+
+                <div style='text-align:center'>
+
+                    <button onclick="document.location.href='@Url.Content("~/Usuario/Nuevo/")'" class="btn btn-info">Registrarse</button>
+                </div>
+
+            </div>
+
+        </div>
+    </center>
+</body>

@@ -1,0 +1,51 @@
+﻿@model List<matriculacion_proy.Models.TableViewModels.VehiculoTableViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+<center>
+<h2>VEHÍCULOS</h2>
+</center>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <table class="table table-bordered">
+                <tr>
+                    <td>ID</td>
+                    <td>PLACA</td>
+                    <td>MOTOR</td>
+                    <td>CHASIS</td>
+                    <td>COMBUSTIBLE</td>
+                    <td>ANIO</td>
+                    <td>AVALÚO</td>
+                    <td>FOTO</td>
+                    <td>MARCA</td>
+                    <td>COLOR</td>
+                </tr>
+                @foreach (var oVehiculo in Model)
+            {
+                <tr>
+                    <td>@oVehiculo.idVehiculo </td>
+                    <td>@oVehiculo.placaVehiculo</td>
+                    <td>@oVehiculo.motorVehiculo </td>
+                    <td>@oVehiculo.chasisVehiculo </td>
+                    <td>@oVehiculo.combustibleVehiculo </td>
+                    <td>@oVehiculo.anioVehiculo </td>
+                    <td>@oVehiculo.avaluoVehiculo </td>
+                    <td>@oVehiculo.fotoVehiculo </td>
+                    <td>@oVehiculo.marcaVehiculo </td>
+                    <td>@oVehiculo.colorVehiculo </td>
+                    <td>
+                        <button onclick="document.location.href = '@Url.Content("~/Vehiculo/Editar/"+@oVehiculo.idVehiculo)'" class="btn btn-info">Editar</button>
+                    </td>
+                    <td>
+                        <button onclick="document.location.href = '@Url.Content("~/Vehiculo/Eliminar/"+@oVehiculo.idVehiculo)'" class="btn btn-danger">Eliminar</button>
+                    </td>
+
+                </tr>
+            }
+            </table>
+            <center>
+                <button class="btn btn-success" onclick="document.location.href = '@Url.Content("~/Vehiculo/Nuevo/")' ">Nuevo</button>
+            </center>
+</div>
+    </div>

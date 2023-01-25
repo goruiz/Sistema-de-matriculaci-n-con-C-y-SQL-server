@@ -1,0 +1,423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_matriculacion_proyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_agencia">
+          <Key>
+            <PropertyRef Name="idAgencia" />
+          </Key>
+          <Property Name="idAgencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcionAgencia" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="direccionAgencia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefonoAgencia" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_color">
+          <Key>
+            <PropertyRef Name="idColor" />
+          </Key>
+          <Property Name="idColor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcionColor" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_marca">
+          <Key>
+            <PropertyRef Name="idMarca" />
+          </Key>
+          <Property Name="idMarca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcionMarca" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="paisMarca" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_matricula">
+          <Key>
+            <PropertyRef Name="idMatricula" />
+          </Key>
+          <Property Name="idMatricula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaMatricula" Type="datetime" Nullable="false" />
+          <Property Name="anioMatricula" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="telefonoMatricula" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="estadoMatricula" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="idVehiculo" Type="int" />
+          <Property Name="idAgencia" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreUsuario" Type="varchar" MaxLength="50" />
+          <Property Name="usuarioUsuario" Type="varchar" MaxLength="15" />
+          <Property Name="claveUsuario" Type="varchar" MaxLength="255" />
+          <Property Name="rolUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="estatusUsuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_vehiculo">
+          <Key>
+            <PropertyRef Name="idVehiculo" />
+          </Key>
+          <Property Name="idVehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="placaVehiculo" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="motorVehiculo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="chasisVehiculo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="combustibleVehiculo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="anioVehiculo" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="avaluoVehiculo" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="fotoVehiculo" Type="varchar" MaxLength="20" />
+          <Property Name="idMarca" Type="int" />
+          <Property Name="idColor" Type="int" />
+          <Property Name="idUsuario" Type="int" />
+        </EntityType>
+        <Association Name="FK__tbl_matri__idAge__3C69FB99">
+          <End Role="tbl_agencia" Type="Self.tbl_agencia" Multiplicity="0..1" />
+          <End Role="tbl_matricula" Type="Self.tbl_matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_agencia">
+              <PropertyRef Name="idAgencia" />
+            </Principal>
+            <Dependent Role="tbl_matricula">
+              <PropertyRef Name="idAgencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_matri__idVeh__3B75D760">
+          <End Role="tbl_vehiculo" Type="Self.tbl_vehiculo" Multiplicity="0..1" />
+          <End Role="tbl_matricula" Type="Self.tbl_matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vehiculo">
+              <PropertyRef Name="idVehiculo" />
+            </Principal>
+            <Dependent Role="tbl_matricula">
+              <PropertyRef Name="idVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_vehic__idCol__37A5467C">
+          <End Role="tbl_color" Type="Self.tbl_color" Multiplicity="0..1" />
+          <End Role="tbl_vehiculo" Type="Self.tbl_vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_color">
+              <PropertyRef Name="idColor" />
+            </Principal>
+            <Dependent Role="tbl_vehiculo">
+              <PropertyRef Name="idColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_vehic__idMar__36B12243">
+          <End Role="tbl_marca" Type="Self.tbl_marca" Multiplicity="0..1" />
+          <End Role="tbl_vehiculo" Type="Self.tbl_vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_marca">
+              <PropertyRef Name="idMarca" />
+            </Principal>
+            <Dependent Role="tbl_vehiculo">
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_vehic__idUsu__38996AB5">
+          <End Role="tbl_usuario" Type="Self.tbl_usuario" Multiplicity="0..1" />
+          <End Role="tbl_vehiculo" Type="Self.tbl_vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="tbl_vehiculo">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_matriculacion_proyModelStoreContainer">
+          <EntitySet Name="tbl_agencia" EntityType="Self.tbl_agencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_color" EntityType="Self.tbl_color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_marca" EntityType="Self.tbl_marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_matricula" EntityType="Self.tbl_matricula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_usuario" EntityType="Self.tbl_usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_vehiculo" EntityType="Self.tbl_vehiculo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tbl_matri__idAge__3C69FB99" Association="Self.FK__tbl_matri__idAge__3C69FB99">
+            <End Role="tbl_agencia" EntitySet="tbl_agencia" />
+            <End Role="tbl_matricula" EntitySet="tbl_matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_matri__idVeh__3B75D760" Association="Self.FK__tbl_matri__idVeh__3B75D760">
+            <End Role="tbl_vehiculo" EntitySet="tbl_vehiculo" />
+            <End Role="tbl_matricula" EntitySet="tbl_matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_vehic__idCol__37A5467C" Association="Self.FK__tbl_vehic__idCol__37A5467C">
+            <End Role="tbl_color" EntitySet="tbl_color" />
+            <End Role="tbl_vehiculo" EntitySet="tbl_vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_vehic__idMar__36B12243" Association="Self.FK__tbl_vehic__idMar__36B12243">
+            <End Role="tbl_marca" EntitySet="tbl_marca" />
+            <End Role="tbl_vehiculo" EntitySet="tbl_vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_vehic__idUsu__38996AB5" Association="Self.FK__tbl_vehic__idUsu__38996AB5">
+            <End Role="tbl_usuario" EntitySet="tbl_usuario" />
+            <End Role="tbl_vehiculo" EntitySet="tbl_vehiculo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_matriculacion_proyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_agencia">
+          <Key>
+            <PropertyRef Name="idAgencia" />
+          </Key>
+          <Property Name="idAgencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcionAgencia" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccionAgencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefonoAgencia" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_matricula" Relationship="Self.FK__tbl_matri__idAge__3C69FB99" FromRole="tbl_agencia" ToRole="tbl_matricula" />
+        </EntityType>
+        <EntityType Name="tbl_color">
+          <Key>
+            <PropertyRef Name="idColor" />
+          </Key>
+          <Property Name="idColor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcionColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_vehiculo" Relationship="Self.FK__tbl_vehic__idCol__37A5467C" FromRole="tbl_color" ToRole="tbl_vehiculo" />
+        </EntityType>
+        <EntityType Name="tbl_marca">
+          <Key>
+            <PropertyRef Name="idMarca" />
+          </Key>
+          <Property Name="idMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcionMarca" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="paisMarca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbl_vehiculo" Relationship="Self.FK__tbl_vehic__idMar__36B12243" FromRole="tbl_marca" ToRole="tbl_vehiculo" />
+        </EntityType>
+        <EntityType Name="tbl_matricula">
+          <Key>
+            <PropertyRef Name="idMatricula" />
+          </Key>
+          <Property Name="idMatricula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaMatricula" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="anioMatricula" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefonoMatricula" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estadoMatricula" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idVehiculo" Type="Int32" />
+          <Property Name="idAgencia" Type="Int32" />
+          <NavigationProperty Name="tbl_agencia" Relationship="Self.FK__tbl_matri__idAge__3C69FB99" FromRole="tbl_matricula" ToRole="tbl_agencia" />
+          <NavigationProperty Name="tbl_vehiculo" Relationship="Self.FK__tbl_matri__idVeh__3B75D760" FromRole="tbl_matricula" ToRole="tbl_vehiculo" />
+        </EntityType>
+        <EntityType Name="tbl_usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioUsuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="claveUsuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="rolUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estatusUsuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbl_vehiculo" Relationship="Self.FK__tbl_vehic__idUsu__38996AB5" FromRole="tbl_usuario" ToRole="tbl_vehiculo" />
+        </EntityType>
+        <EntityType Name="tbl_vehiculo">
+          <Key>
+            <PropertyRef Name="idVehiculo" />
+          </Key>
+          <Property Name="idVehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="placaVehiculo" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="motorVehiculo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="chasisVehiculo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="combustibleVehiculo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="anioVehiculo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="avaluoVehiculo" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="fotoVehiculo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idMarca" Type="Int32" />
+          <Property Name="idColor" Type="Int32" />
+          <Property Name="idUsuario" Type="Int32" />
+          <NavigationProperty Name="tbl_color" Relationship="Self.FK__tbl_vehic__idCol__37A5467C" FromRole="tbl_vehiculo" ToRole="tbl_color" />
+          <NavigationProperty Name="tbl_marca" Relationship="Self.FK__tbl_vehic__idMar__36B12243" FromRole="tbl_vehiculo" ToRole="tbl_marca" />
+          <NavigationProperty Name="tbl_matricula" Relationship="Self.FK__tbl_matri__idVeh__3B75D760" FromRole="tbl_vehiculo" ToRole="tbl_matricula" />
+          <NavigationProperty Name="tbl_usuario" Relationship="Self.FK__tbl_vehic__idUsu__38996AB5" FromRole="tbl_vehiculo" ToRole="tbl_usuario" />
+        </EntityType>
+        <Association Name="FK__tbl_matri__idAge__3C69FB99">
+          <End Role="tbl_agencia" Type="Self.tbl_agencia" Multiplicity="0..1" />
+          <End Role="tbl_matricula" Type="Self.tbl_matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_agencia">
+              <PropertyRef Name="idAgencia" />
+            </Principal>
+            <Dependent Role="tbl_matricula">
+              <PropertyRef Name="idAgencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_vehic__idCol__37A5467C">
+          <End Role="tbl_color" Type="Self.tbl_color" Multiplicity="0..1" />
+          <End Role="tbl_vehiculo" Type="Self.tbl_vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_color">
+              <PropertyRef Name="idColor" />
+            </Principal>
+            <Dependent Role="tbl_vehiculo">
+              <PropertyRef Name="idColor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_vehic__idMar__36B12243">
+          <End Role="tbl_marca" Type="Self.tbl_marca" Multiplicity="0..1" />
+          <End Role="tbl_vehiculo" Type="Self.tbl_vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_marca">
+              <PropertyRef Name="idMarca" />
+            </Principal>
+            <Dependent Role="tbl_vehiculo">
+              <PropertyRef Name="idMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_matri__idVeh__3B75D760">
+          <End Role="tbl_vehiculo" Type="Self.tbl_vehiculo" Multiplicity="0..1" />
+          <End Role="tbl_matricula" Type="Self.tbl_matricula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_vehiculo">
+              <PropertyRef Name="idVehiculo" />
+            </Principal>
+            <Dependent Role="tbl_matricula">
+              <PropertyRef Name="idVehiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tbl_vehic__idUsu__38996AB5">
+          <End Role="tbl_usuario" Type="Self.tbl_usuario" Multiplicity="0..1" />
+          <End Role="tbl_vehiculo" Type="Self.tbl_vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbl_usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="tbl_vehiculo">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_matriculacion_proyEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_agencia" EntityType="Self.tbl_agencia" />
+          <EntitySet Name="tbl_color" EntityType="Self.tbl_color" />
+          <EntitySet Name="tbl_marca" EntityType="Self.tbl_marca" />
+          <EntitySet Name="tbl_matricula" EntityType="Self.tbl_matricula" />
+          <EntitySet Name="tbl_usuario" EntityType="Self.tbl_usuario" />
+          <EntitySet Name="tbl_vehiculo" EntityType="Self.tbl_vehiculo" />
+          <AssociationSet Name="FK__tbl_matri__idAge__3C69FB99" Association="Self.FK__tbl_matri__idAge__3C69FB99">
+            <End Role="tbl_agencia" EntitySet="tbl_agencia" />
+            <End Role="tbl_matricula" EntitySet="tbl_matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_vehic__idCol__37A5467C" Association="Self.FK__tbl_vehic__idCol__37A5467C">
+            <End Role="tbl_color" EntitySet="tbl_color" />
+            <End Role="tbl_vehiculo" EntitySet="tbl_vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_vehic__idMar__36B12243" Association="Self.FK__tbl_vehic__idMar__36B12243">
+            <End Role="tbl_marca" EntitySet="tbl_marca" />
+            <End Role="tbl_vehiculo" EntitySet="tbl_vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_matri__idVeh__3B75D760" Association="Self.FK__tbl_matri__idVeh__3B75D760">
+            <End Role="tbl_vehiculo" EntitySet="tbl_vehiculo" />
+            <End Role="tbl_matricula" EntitySet="tbl_matricula" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tbl_vehic__idUsu__38996AB5" Association="Self.FK__tbl_vehic__idUsu__38996AB5">
+            <End Role="tbl_usuario" EntitySet="tbl_usuario" />
+            <End Role="tbl_vehiculo" EntitySet="tbl_vehiculo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_matriculacion_proyModelStoreContainer" CdmEntityContainer="db_matriculacion_proyEntities2">
+          <EntitySetMapping Name="tbl_agencia">
+            <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_agencia">
+              <MappingFragment StoreEntitySet="tbl_agencia">
+                <ScalarProperty Name="idAgencia" ColumnName="idAgencia" />
+                <ScalarProperty Name="descripcionAgencia" ColumnName="descripcionAgencia" />
+                <ScalarProperty Name="direccionAgencia" ColumnName="direccionAgencia" />
+                <ScalarProperty Name="telefonoAgencia" ColumnName="telefonoAgencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_color">
+            <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_color">
+              <MappingFragment StoreEntitySet="tbl_color">
+                <ScalarProperty Name="idColor" ColumnName="idColor" />
+                <ScalarProperty Name="descripcionColor" ColumnName="descripcionColor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_marca">
+            <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_marca">
+              <MappingFragment StoreEntitySet="tbl_marca">
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="descripcionMarca" ColumnName="descripcionMarca" />
+                <ScalarProperty Name="paisMarca" ColumnName="paisMarca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_matricula">
+            <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_matricula">
+              <MappingFragment StoreEntitySet="tbl_matricula">
+                <ScalarProperty Name="idMatricula" ColumnName="idMatricula" />
+                <ScalarProperty Name="fechaMatricula" ColumnName="fechaMatricula" />
+                <ScalarProperty Name="anioMatricula" ColumnName="anioMatricula" />
+                <ScalarProperty Name="telefonoMatricula" ColumnName="telefonoMatricula" />
+                <ScalarProperty Name="estadoMatricula" ColumnName="estadoMatricula" />
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="idAgencia" ColumnName="idAgencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_usuario">
+            <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_usuario">
+              <MappingFragment StoreEntitySet="tbl_usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="usuarioUsuario" ColumnName="usuarioUsuario" />
+                <ScalarProperty Name="claveUsuario" ColumnName="claveUsuario" />
+                <ScalarProperty Name="rolUsuario" ColumnName="rolUsuario" />
+                <ScalarProperty Name="estatusUsuario" ColumnName="estatusUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_vehiculo">
+            <EntityTypeMapping TypeName="db_matriculacion_proyModel.tbl_vehiculo">
+              <MappingFragment StoreEntitySet="tbl_vehiculo">
+                <ScalarProperty Name="idVehiculo" ColumnName="idVehiculo" />
+                <ScalarProperty Name="placaVehiculo" ColumnName="placaVehiculo" />
+                <ScalarProperty Name="motorVehiculo" ColumnName="motorVehiculo" />
+                <ScalarProperty Name="chasisVehiculo" ColumnName="chasisVehiculo" />
+                <ScalarProperty Name="combustibleVehiculo" ColumnName="combustibleVehiculo" />
+                <ScalarProperty Name="anioVehiculo" ColumnName="anioVehiculo" />
+                <ScalarProperty Name="avaluoVehiculo" ColumnName="avaluoVehiculo" />
+                <ScalarProperty Name="fotoVehiculo" ColumnName="fotoVehiculo" />
+                <ScalarProperty Name="idMarca" ColumnName="idMarca" />
+                <ScalarProperty Name="idColor" ColumnName="idColor" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

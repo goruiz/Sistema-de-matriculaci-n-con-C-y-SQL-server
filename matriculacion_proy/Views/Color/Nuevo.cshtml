@@ -1,0 +1,28 @@
+﻿
+@model matriculacion_proy.Models.ViewModels.ColorViewModel
+@{
+    ViewBag.Title = "NUEVO Color";
+}
+
+<center>
+    <h2>@ViewBag.Title</h2>
+</center>
+
+<div class="row">
+    <div class="col-lg-12">
+        @using (Html.BeginForm("Nuevo", "Color", FormMethod.Post, new { role = "form", }))
+        {
+        @Html.AntiForgeryToken()
+
+        @Html.LabelFor(d => d.descripcionColor, new { @class = "form-content" })
+        @Html.TextBoxFor(d => d.descripcionColor, new { @class = "form-control" })
+       
+
+        <div style="text-align: left;">
+            <input type="submit" class="btn btn-success" value="Guardar">
+        </div>
+        }
+    </div>
+</div>
+
+
